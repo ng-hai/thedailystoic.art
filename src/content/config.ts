@@ -1,14 +1,20 @@
-// 1. Import utilities from `astro:content`
-import { defineCollection, z } from "astro:content"
+import { defineCollection, reference, z } from "astro:content"
 
-// 2. Define a `type` and `schema` for each collection
-const datesCollection = defineCollection({
-  type: "content", // v2.5.0 and later
+const dates = defineCollection({
+  type: "content",
   schema: z.object({
+    title: z.string(),
+    part: reference("parts"),
+    category: reference("categories"),
   }),
 })
 
-// 3. Export a single `collections` object to register your collection(s)
+const parts = defineCollection({ type: "data", schema: z.object({ name: z.string() }) })
+
+const categories = defineCollection({ type: "data", schema: z.object({ name: z.string() }) })
+
 export const collections = {
-  dates: datesCollection,
+  dates,
+  parts,
+  categories,
 }

@@ -3,16 +3,36 @@ import { getEntry } from "astro:content";
 
 const today = new Date();
 const filename = [today.getMonth() + 1, today.getDate()].join("-");
-const entry = await getEntry("dates", filename);
+const dateEntry = await getEntry("dates", filename);
 
-if (!entry) {
+if (!dateEntry) {
   return new Response(null, {
     status: 404,
-    statusText: "Content not found",
+    statusText: "[Date] Content not found",
   });
 }
 
-const { Content } = await entry.render();
+// Resolve `part` reference
+const partEntry = await getEntry(dateEntry.data.part);
+
+if (!partEntry) {
+  return new Response(null, {
+    status: 404,
+    statusText: "[Part] Content not found",
+  });
+}
+
+// Resolve `category` reference
+const categoryEntry = await getEntry(dateEntry.data.category);
+
+if (!categoryEntry) {
+  return new Response(null, {
+    status: 404,
+    statusText: "[Category] Content not found",
+  });
+}
+
+const { Content: DateContent } = await dateEntry.render();
 ---
 
 <html lang="en">
@@ -32,7 +52,7 @@ const { Content } = await entry.render();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Serif:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Serif:ital,wght@0,700;1,700&display=swap"
       rel="stylesheet"
     />
     <style is:inline>
@@ -80,7 +100,9 @@ const { Content } = await entry.render();
   <body class="h-screen bg-rp-base text-rp-text">
     <main class="flex items-center justify-center h-full py-10">
       <article class="w-full animate-fade-in-bottom">
-        <Content />
+        <h3 set:html={partEntry.data.name} class="text-center" />
+        <h1 set:html={dateEntry.data.title} />
+        <DateContent />
       </article>
     </main>
   </body>
