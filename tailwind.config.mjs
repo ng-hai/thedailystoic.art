@@ -176,6 +176,18 @@ export default {
             },
           },
 
+          "p:not(blockquote p):first-of-type:first-letter": {
+            "@apply float-left leading-[1em] text-[3.5rem] font-bold mr-[.1em] -mt-px": {},
+
+            "@screen tablet": {
+              "@apply text-[4rem]": {},
+            },
+
+            "@screen desktop": {
+              "@apply text-[4.5rem]": {},
+            },
+          },
+
           "a": {
             "@apply underline decoration-rp-rose decoration-2 underline-offset-2": {},
             "@apply text-rp-text transition": {},
@@ -256,7 +268,7 @@ export default {
           },
 
           "strong": {
-            "@apply font-semibold text-rp-text": {},
+            "@apply font-bold text-rp-text": {},
           },
 
           "hr": {

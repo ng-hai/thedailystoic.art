@@ -1,5 +1,6 @@
 ---
 import { getEntry } from "astro:content";
+import { format } from "date-fns";
 
 const today = new Date();
 const filename = [today.getMonth() + 1, today.getDate()].join("-");
@@ -35,14 +36,14 @@ if (!categoryEntry) {
 const { Content: DateContent } = await dateEntry.render();
 ---
 
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Daily Stoic</title>
     <meta
       name="description"
-      content="One stoic quote a day, keeps stress and chaos at bay!"
+      content="Start your day with clarity: A daily dose of Stoic wisdom"
     />
 
     <link
@@ -97,12 +98,32 @@ const { Content: DateContent } = await dateEntry.render();
       }
     </style>
   </head>
-  <body class="h-screen bg-rp-base text-rp-text">
-    <main class="flex items-center justify-center h-full py-10">
+  <body class="h-full font-sans bg-rp-base text-rp-text">
+    <header class="py-4 flex flex-col items-center justify-center gap-1">
+      <h1
+        set:html={partEntry.data.name}
+        style="color: transparent"
+        class:list={[
+          "text-center font-serif font-bold tracking-widest inline",
+          "bg-gradient-to-r from-rp-rose via-rp-iris to-rp-foam bg-clip-text",
+        ]}
+      />
+      <h2
+        set:html={categoryEntry.data.name}
+        class="font-bold text-xs tracking-wider text-rp-muted"
+      />
+    </header>
+    <main class="flex items-center justify-center">
       <article class="w-full animate-fade-in-bottom">
-        <h3 set:html={partEntry.data.name} class="text-center" />
-        <h1 set:html={dateEntry.data.title} />
-        <DateContent />
+        <div class="text-center font-bold tracking-wide text-rp-subtle">
+          <time datetime={today.toLocaleDateString()} class="text-rp-gold">
+            {format(today, "MMMM do")}
+          </time>
+        </div>
+        <h2 set:html={dateEntry.data.title} class="text-center mt-0" />
+        <div class="mt-10 space-y-10">
+          <DateContent />
+        </div>
       </article>
     </main>
   </body>
