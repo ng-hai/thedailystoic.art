@@ -165,7 +165,7 @@ export default {
           },
 
           "p, li": {
-            "@apply m-0 mb-6 leading-7 tracking-wide text-rp-subtle": {},
+            "@apply m-0 mb-6 leading-7 tracking-wide": {},
 
             "@screen tablet": {
               "@apply text-lg leading-8": {},
