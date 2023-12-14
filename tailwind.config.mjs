@@ -293,7 +293,7 @@ export default {
 
           "blockquote": {
             "@apply bg-rp-surface text-rp-text border-rp-highlight-med": {},
-            "@apply relative italic -mx-4 mb-4 p-4 border-y min-[577px]:border-x": {},
+            "@apply relative italic -mx-4 mb-10 p-4 border-y min-[577px]:border-x": {},
             "@apply before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[5px] before:bg-rp-rose": {},
             "@apply before:-translate-x-[3px] max-[576px]:before:-translate-x-px": {},
 
@@ -303,6 +303,18 @@ export default {
 
             "> *:last-child": {
               "@apply mb-0": {},
+            },
+          },
+
+          "aside": {
+            "@apply pl-2 mb-6 tracking-wide text-sm leading-6": {},
+
+            "@screen tablet": {
+              "@apply pl-4 text-base leading-7": {},
+            },
+
+            "@screen desktop": {
+              "@apply pl-6 text-lg leading-8": {},
             },
           },
         },
