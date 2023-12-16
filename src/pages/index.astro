@@ -2,7 +2,22 @@
 import { getEntry } from "astro:content";
 import { format } from "date-fns";
 
-const today = new Date();
+let today = new Date();
+
+// Get current dateTime based on user’s ipAddress
+try {
+  const ip = Astro.request.headers.get("x-real-ip");
+  const response = await fetch(
+    `https://timeapi.io/api/Time/current/ip?ipAddress=${ip}`,
+    { headers: { accept: "application/json" } },
+  );
+
+  const { dateTime } = (await response.json()) as { dateTime: string };
+  today = new Date(dateTime);
+} catch (error) {
+  console.error(error);
+}
+
 const filename = [today.getMonth() + 1, today.getDate()].join("-");
 const dateEntry = await getEntry("dates", filename);
 
@@ -51,7 +66,7 @@ const { Content: DateContent } = await dateEntry.render();
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>"
     />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+
     <style is:inline>
       :root {
         /* Rosé Pine Dawn */
