@@ -1,6 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import Layout from "./_layout.astro";
+import { titleToUrlSegment } from "../utils";
 
 // Opt-out pre-rendering
 export const prerender = false;
@@ -34,6 +35,38 @@ if (!dateEntry) {
     statusText: "[Date] Content not found",
   });
 }
+
+const slug = titleToUrlSegment(dateEntry.data.title);
 ---
 
-<Layout dateEntry={dateEntry} dateTime={today} />
+<Layout dateEntry={dateEntry} dateTime={today}>
+  <div class="mt-10 flex items-center justify-center">
+    <button
+      id="copy"
+      data-copy-value={slug}
+      class="tracking-wide px-2 py-1 bg-rp-overlay hover:bg-rp-highlight-low transition-colors text-sm font-bold text-rp-subtle rounded-md"
+    >
+      Copy link to share
+    </button>
+  </div>
+</Layout>
+
+<script>
+  const copyButton = document.getElementById("copy");
+
+  copyButton?.addEventListener("click", () => {
+    const link = copyButton.getAttribute("data-copy-value");
+
+    if (link) {
+      navigator.clipboard
+        .writeText(location.href + link)
+        .then(() => {
+          copyButton.innerText = "Link copied";
+          setTimeout(() => {
+            copyButton.innerText = "Copy link to share";
+          }, 1000);
+        })
+        .catch((error) => console.error("Error copying link:", error));
+    }
+  });
+</script>

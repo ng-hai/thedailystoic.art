@@ -6,6 +6,8 @@ export function titleToUrlSegment(title: string) {
     .replace(/<[^>]*>/g, "")
     // Remove double quotes
     .replace(/“|”/g, "")
+    // Replace dash
+    .replace(/—/g, "-")
 
   return slugify(segment, { lower: true },
   )
