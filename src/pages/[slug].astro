@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "./_layout.astro";
+import { titleToUrlSegment } from "../utils";
+
+export const getStaticPaths = (async () => {
+  const collection = await getCollection("dates");
+  return collection.map((entry) => {
+    return {
+      params: { slug: titleToUrlSegment(entry.data.title) },
+      props: { entry },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+
+const dateTime = new Date();
+const [month, date] = entry.slug.split("-");
+dateTime.setMonth(parseInt(month, 10) - 1);
+dateTime.setDate(parseInt(date, 10));
+---
+
+<Layout dateEntry={entry} dateTime={dateTime} />
