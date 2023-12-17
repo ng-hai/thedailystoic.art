@@ -22,4 +22,8 @@ dateTime.setMonth(parseInt(month, 10) - 1);
 dateTime.setDate(parseInt(date, 10));
 ---
 
-<Layout dateEntry={entry} dateTime={dateTime} />
+<Layout
+  dateEntry={entry}
+  dateTime={dateTime}
+  title={[entry.data.title, "The Daily Stoic"].join(" | ")}
+/>
