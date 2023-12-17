@@ -5,15 +5,17 @@ import { format } from "date-fns";
 export type Props = {
   title?: string;
   description?: string;
+  lang?: string;
   dateEntry: CollectionEntry<"dates">;
-  dateTime: Date
+  dateTime: Date;
 };
 
 const {
   title = "The Daily Stoic",
   description = "A daily dose of Stoic wisdom",
   dateEntry,
-  dateTime
+  dateTime,
+  lang = "en",
 } = Astro.props;
 
 // Resolve `part` reference
@@ -37,10 +39,9 @@ if (!categoryEntry) {
 }
 
 const { Content: DateContent } = await dateEntry.render();
-
 ---
 
-<html class="h-full">
+<html lang={lang} class="h-full">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,7 +53,28 @@ const { Content: DateContent } = await dateEntry.render();
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>"
     />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com/s/ibmplexsans/v19/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjWr7AIFsdP3pBms.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com/s/ibmplexserif/v19/jizAREVNn1dOx-zrZ2X3pZvkTi2k_iI0q1vjitOh.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    
     <style is:inline>
       :root {
         /* Rosé Pine Dawn */
