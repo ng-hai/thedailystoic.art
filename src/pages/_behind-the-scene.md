@@ -1,7 +1,7 @@
 ---
 title: BEHIND THE SCENE
 description: Chuyện về quá trình xây dựng website này, từ ý tưởng cho tới thành phẩm, và bài học
-date: 2023-12-18
+date: 2023-12-22
 ---
 
 Sự tồn tại của website The Daily Stoic hơi không liên quan đến ý tưởng ban đầu, vốn dĩ là nó không dành cho cuốn sách này.
