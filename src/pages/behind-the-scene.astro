@@ -1,0 +1,21 @@
+---
+import Layout from "./_layout.astro";
+import { Content, frontmatter } from "./_behind-the-scene.md";
+import { format } from "date-fns";
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <main class="flex items-center justify-center">
+    <article class="w-full animate-fade-in-bottom">
+      <div class="text-center font-bold tracking-wide text-rp-subtle">
+        <time datetime={frontmatter.date} class="text-rp-gold">
+          {format(new Date(frontmatter.date), "MMMM do")}
+        </time>
+      </div>
+      <h2 set:html={frontmatter.title} class="text-center mt-0" />
+      <div class="mt-10">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>

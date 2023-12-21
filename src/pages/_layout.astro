@@ -1,44 +1,15 @@
 ---
-import { getEntry, type CollectionEntry } from "astro:content";
-import { format } from "date-fns";
-
 export type Props = {
   title?: string;
   description?: string;
   lang?: string;
-  dateEntry: CollectionEntry<"dates">;
-  dateTime: Date;
 };
 
 const {
   title = "The Daily Stoic",
   description = "A daily dose of Stoic wisdom",
-  dateEntry,
-  dateTime,
   lang = "en",
 } = Astro.props;
-
-// Resolve `part` reference
-const partEntry = await getEntry(dateEntry.data.part);
-
-if (!partEntry) {
-  return new Response(null, {
-    status: 404,
-    statusText: "[Part] Content not found",
-  });
-}
-
-// Resolve `category` reference
-const categoryEntry = await getEntry(dateEntry.data.category);
-
-if (!categoryEntry) {
-  return new Response(null, {
-    status: 404,
-    statusText: "[Category] Content not found",
-  });
-}
-
-const { Content: DateContent } = await dateEntry.render();
 ---
 
 <html lang={lang} class="h-full">
@@ -47,6 +18,25 @@ const { Content: DateContent } = await dateEntry.render();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thedailystoic.art/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta
+      property="og:image"
+      content="https://thedailystoic.art/images/book.jpeg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://thedailystoic.art/" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta
+      property="twitter:image"
+      content="https://thedailystoic.art/images/book.jpeg"
+    />
 
     <link
       rel="icon"
@@ -74,7 +64,7 @@ const { Content: DateContent } = await dateEntry.render();
       type="font/woff2"
       crossorigin
     />
-    
+
     <style is:inline>
       :root {
         /* Rosé Pine Dawn */
@@ -518,34 +508,6 @@ const { Content: DateContent } = await dateEntry.render();
     </script>
   </head>
   <body class="h-full font-sans bg-rp-base text-rp-text">
-    <header class="py-4 flex flex-col items-center justify-center gap-1">
-      <h1
-        set:html={partEntry.data.name}
-        style="color: transparent"
-        class:list={[
-          "text-center font-serif font-bold tracking-widest inline",
-          "bg-gradient-to-r from-rp-rose via-rp-iris to-rp-foam bg-clip-text",
-        ]}
-      />
-      <h2
-        set:html={categoryEntry.data.name}
-        class="font-bold text-xs tracking-wider text-rp-subtle"
-      />
-    </header>
-    <main class="flex items-center justify-center">
-      <article class="w-full animate-fade-in-bottom">
-        <div class="text-center font-bold tracking-wide text-rp-subtle">
-          <time datetime={dateTime.toLocaleDateString()} class="text-rp-gold">
-            {format(dateTime, "MMMM do")}
-          </time>
-        </div>
-        <h2 set:html={dateEntry.data.title} class="text-center mt-0" />
-        <div class="mt-10">
-          <DateContent />
-        </div>
-
-        <slot />
-      </article>
-    </main>
+    <slot />
   </body>
 </html>

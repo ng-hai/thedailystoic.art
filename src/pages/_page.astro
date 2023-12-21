@@ -1,0 +1,66 @@
+---
+import { getEntry, type CollectionEntry } from "astro:content";
+import Layout, { type Props as LayoutProps } from "./_layout.astro";
+import { format } from "date-fns";
+
+export type Props = LayoutProps & {
+  dateEntry: CollectionEntry<"dates">;
+  dateTime: Date;
+};
+
+const { dateEntry, dateTime, ...layoutProps } = Astro.props;
+
+// Resolve `part` reference
+const partEntry = await getEntry(dateEntry.data.part);
+
+if (!partEntry) {
+  return new Response(null, {
+    status: 404,
+    statusText: "[Part] Content not found",
+  });
+}
+
+// Resolve `category` reference
+const categoryEntry = await getEntry(dateEntry.data.category);
+
+if (!categoryEntry) {
+  return new Response(null, {
+    status: 404,
+    statusText: "[Category] Content not found",
+  });
+}
+
+const { Content: DateContent } = await dateEntry.render();
+---
+
+<Layout {...layoutProps}>
+  <header class="py-4 flex flex-col items-center justify-center gap-1">
+    <h1
+      set:html={partEntry.data.name}
+      style="color: transparent"
+      class:list={[
+        "text-center font-serif font-bold tracking-widest inline",
+        "bg-gradient-to-r from-rp-rose via-rp-iris to-rp-foam bg-clip-text",
+      ]}
+    />
+    <h2
+      set:html={categoryEntry.data.name}
+      class="font-bold text-xs tracking-wider text-rp-subtle"
+    />
+  </header>
+  <main class="flex items-center justify-center">
+    <article class="w-full animate-fade-in-bottom">
+      <div class="text-center font-bold tracking-wide text-rp-subtle">
+        <time datetime={dateTime.toLocaleDateString()} class="text-rp-gold">
+          {format(dateTime, "MMMM do")}
+        </time>
+      </div>
+      <h2 set:html={dateEntry.data.title} class="text-center mt-0" />
+      <div class="mt-10">
+        <DateContent />
+      </div>
+
+      <slot />
+    </article>
+  </main>
+</Layout>

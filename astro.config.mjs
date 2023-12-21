@@ -8,4 +8,7 @@ export default defineConfig({
   integrations: [tailwind()],
   output: "hybrid",
   adapter: vercel(),
+  markdown: {
+    remarkRehype: { footnoteLabelTagName: "h3" },
+  },
 })

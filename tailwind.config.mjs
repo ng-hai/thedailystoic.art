@@ -89,7 +89,7 @@ export default {
       addComponents({
         article: {
           "&": {
-            "@apply mx-auto max-w-xl px-4 py-20": {},
+            "@apply mx-auto max-w-xl px-4 py-20 text-rp-text": {},
 
             "@screen tablet": {
               "@apply max-w-2xl": {},
@@ -100,8 +100,8 @@ export default {
             },
           },
 
-          "h1, h2, h3": {
-            "@apply font-serif text-rp-text": {},
+          "h1, h2, h3, h4": {
+            "@apply font-serif": {},
           },
 
           "h1": {
@@ -164,7 +164,7 @@ export default {
             },
           },
 
-          "p, li": {
+          "p, li, h4": {
             "@apply m-0 mb-6 leading-7 tracking-wide": {},
 
             "@screen tablet": {
@@ -176,7 +176,7 @@ export default {
             },
           },
 
-          "p:not(blockquote p):first-of-type:first-letter": {
+          "p:not(blockquote p):not(section.footnotes p):first-of-type:first-letter": {
             "@apply float-left leading-[1em] text-[3.5rem] font-bold mr-[.1em] -mt-px": {},
 
             "@screen tablet": {
@@ -192,7 +192,7 @@ export default {
             "@apply underline decoration-rp-rose decoration-2 underline-offset-2": {},
             "@apply text-rp-text transition": {},
             "@apply hover:decoration-rp-pine focus:decoration-rp-pine": {},
-            "@apply data-[footnote-ref]:no-underline": {},
+            "@apply data-[footnote-ref]:no-underline data-[footnote-ref]:text-rp-rose data-[footnote-ref]:hover:text-rp-pine": {},
           },
 
           "ol, ul": {
@@ -268,7 +268,7 @@ export default {
           },
 
           "strong": {
-            "@apply font-bold text-rp-text": {},
+            "@apply font-bold": {},
           },
 
           "hr": {
@@ -287,7 +287,7 @@ export default {
             },
 
             "figcaption": {
-              "@apply mt-2 px-4 text-sm italic tracking-wide text-rp-muted desktop:text-base": {},
+              "@apply mt-2 px-4 text-sm italic tracking-wide text-rp-subtle desktop:text-base": {},
             },
           },
 

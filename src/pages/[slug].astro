@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import Layout from "./_layout.astro";
 import { titleToUrlSegment } from "../utils";
+import Page from "./_page.astro";
 
 export const getStaticPaths = (async () => {
   const collection = await getCollection("dates");
@@ -22,7 +23,7 @@ dateTime.setMonth(parseInt(month, 10) - 1);
 dateTime.setDate(parseInt(date, 10));
 ---
 
-<Layout
+<Page
   dateEntry={entry}
   dateTime={dateTime}
   title={entry.data.title}

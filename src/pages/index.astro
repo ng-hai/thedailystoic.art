@@ -2,6 +2,7 @@
 import { getEntry } from "astro:content";
 import Layout from "./_layout.astro";
 import { titleToUrlSegment } from "../utils";
+import Page from "./_page.astro";
 
 // Opt-out pre-rendering
 export const prerender = false;
@@ -39,12 +40,12 @@ if (!dateEntry) {
 const slug = titleToUrlSegment(dateEntry.data.title);
 ---
 
-<Layout dateEntry={dateEntry} dateTime={today}>
+<Page dateEntry={dateEntry} dateTime={today}>
   <div class="mt-10 flex items-center justify-center">
     <button
       id="copy"
       data-copy-value={slug}
-      class="tracking-wide px-2 py-1 bg-rp-overlay hover:bg-rp-highlight-low transition-colors text-sm font-bold text-rp-subtle rounded-md"
+      class="tracking-wide px-2 py-1 bg-rp-overlay hover:bg-rp-highlight-low hover:text-rp-subtle transition-colors text-sm font-bold rounded-md"
     >
       Copy link to share
     </button>
