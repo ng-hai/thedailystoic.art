@@ -1,6 +1,6 @@
 ---
 title: BEHIND THE SCENE
-description: Chuyện về quá trình xây dựng website này, từ ý tưởng cho tới thành phẩm
+description: Chuyện về quá trình xây dựng website này, từ ý tưởng cho tới thành phẩm, và bài học
 date: 2023-12-18
 ---
 
