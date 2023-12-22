@@ -73,9 +73,9 @@ Sử dụng ngày tháng hiện tại tôi có thể định danh được nội
 
 Tự ngồi tạo thủ công đống file này sẽ tốn rất nhiều thời gian, có khi chưa tạo xong hết thì đã khai tử luôn dự án vì nản. Nhưng năm nay khác năm ngoái, AI bây giờ đầy như rau ngoài chợ, đi lựa đại một con rồi xài cho lẹ.
 
-Tôi yêu cầu ChatGPT 3.5 viết một file bashscript chạy trên macOS để tạo ra 366 files markdown, với tên file tăng dần dựa vào ngày tháng trong năm theo định dạng **MM-DD.md**. Nó trả lời cũng nhanh, còn chạy thì lỗi lên lỗi xuống, sửa lòng vòng 3-4 lần vẫn vậy. Quay qua Google Bard, cũng là yêu cầu đó nhưng chạy lần đầu thì thành công luôn. Bye GPT, you failed me.
+Tôi yêu cầu ChatGPT 3.5 viết một file bashscript chạy trên macOS để tạo ra 366 files markdown, với tên file tăng dần dựa vào ngày tháng trong năm theo định dạng **MM-DD.md**. Nó trả lời cũng nhanh, còn chạy thì lỗi lên lỗi xuống, sửa lòng vòng 3-4 lần vẫn vậy. Quay qua Google Bard, cũng là yêu cầu đó nhưng chạy thành công ngay lần đầu. Bye GPT, you failed me.
 
-Công đoạn nhập liệu cũng tốn nhiều thời gian, có thể dùng một tool nào đó chuyển đổi từ PDF (lậu)[^1], nhưng tôi chấp nhận đánh đổi ngồi sao chép từng trang để đối chiếu được nội dung, đảm bảo từng câu chữ được không sai chính tả, xuống hàng, in nghiêng, v.v... theo đúng nguyên bản của cuốn sách. Quá trình này cũng chỉ mất 2 buổi tối ngồi cafe.
+Công đoạn nhập liệu cũng tốn nhiều thời gian, có thể dùng một tool nào đó chuyển đổi từ PDF (lậu)[^1], nhưng tôi chấp nhận đánh đổi ngồi sao chép từng trang để đối chiếu được nội dung, đảm bảo từng câu chữ không sai chính tả, xuống hàng, in nghiêng, v.v... theo đúng nguyên bản của cuốn sách. Quá trình này cũng chỉ mất 2 buổi tối ngồi cafe.
 
 Phần xử lý lấy ra nội dung theo ngày được thực hiện ở phía server mỗi khi website nhận lượt truy cập, Astro hỗ trợ phần này qua cơ chế [On-demand Rendered](https://docs.astro.build/en/core-concepts/rendering-modes/#on-demand-rendered), kết hợp cùng [Content Collections](https://docs.astro.build/en/guides/content-collections/) APIs nên thời gian xây dựng website được giảm tải hơn nhiều so với cách tôi dựng 3 cái blog trước đây.
 
@@ -89,7 +89,7 @@ Vậy là chỉ mất khoảng 3 ngày, tôi đã biến ý tưởng thành hìn
 
 Hơi trễ vì từng ấy năm trong nghề, lần đầu tiên tôi thấy mình “biết làm” sản phẩm. Không phải vì thiếu kỹ năng, mà do tư duy chưa được mở khóa, cũng chẳng buồn lắm vì xưa giờ toàn tự mò mẫm, học lỏm, không có ai chỉ bảo.
 
-Website này không có gì to tát, cũng chẳng giải quyết vấn đề của người đọc cuốn sách này. Trải qua quá trình xây dựng, tôi học được cách thoát khỏi mê cung của sự bủa vây từ vô vàn suy nghĩ, của sự trì hoãn, và cả tiếng nói trong tâm trí ngăn cản tôi hướng tới đến mục tiêu ban đầu. Với một lập trình viên, chắc đây là “lời nguyền kiến thức”, ta biết nhiều, rồi đâm ra lo lắng nhiều.
+Website không có gì to tát, cũng chẳng giải quyết vấn đề của người đọc cuốn sách này. Trải qua quá trình xây dựng, tôi học được cách thoát khỏi mê cung của sự bủa vây từ vô vàn suy nghĩ, của sự trì hoãn, và cả tiếng nói trong tâm trí ngăn cản tôi hướng tới đến mục tiêu ban đầu. Với một lập trình viên, chắc đây là “lời nguyền kiến thức”, ta biết nhiều, rồi đâm ra lo lắng nhiều.
 
 Ta lo nghĩ về việc trùng ý tưởng, đã có người làm rồi, nhưng quên rằng ý tưởng thì rẻ mạt, thực hiện chúng mới là điều quan trọng.
 
