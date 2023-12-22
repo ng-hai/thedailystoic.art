@@ -287,7 +287,7 @@ export default {
             },
 
             "figcaption": {
-              "@apply mt-2 px-4 text-sm italic tracking-wide text-rp-subtle desktop:text-base": {},
+              "@apply mt-2 px-4 text-sm italic tracking-wide text-rp-subtle desktop:text-base text-center": {},
             },
           },
 
