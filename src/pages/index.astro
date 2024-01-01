@@ -27,7 +27,14 @@ if (ip) {
 }
 
 // Get specific entry by date
-const filename = [today.getMonth() + 1, today.getDate()].join("-");
+const month = today.getMonth() + 1;
+const date = today.getDate();
+
+const filename = [
+  month < 10 ? `0${month}` : month,
+  date < 10 ? `0${date}` : date,
+].join("-");
+
 const dateEntry = await getEntry("dates", filename);
 
 if (!dateEntry) {
@@ -50,7 +57,7 @@ const slug = titleToUrlSegment(dateEntry.data.title);
       Copy link to share
     </button>
   </div>
-</Layout>
+</Page>
 
 <script>
   const copyButton = document.getElementById("copy");
