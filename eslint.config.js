@@ -6,4 +6,5 @@ export default antfu({
     quotes: "double",
     semi: false,
   },
+  astro: true,
 })
