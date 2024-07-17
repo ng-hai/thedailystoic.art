@@ -7,7 +7,7 @@ import mdx from "@astrojs/mdx"
 export default defineConfig({
   integrations: [tailwind(), mdx()],
   output: "hybrid",
-  adapter: vercel(),
+  adapter: vercel({ maxDuration: 20 }),
   markdown: {
     remarkRehype: {
       footnoteLabelTagName: "h3",
